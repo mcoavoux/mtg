@@ -49,9 +49,9 @@ is in the data folder).
     bash generate_negra_data.sh
     cd ..
 
-Each folder (negraall, negra30, tigerM15, tigerHN8, tigerM15pred_spmrl)
-will contain discbracket format corpora (train.mrg, dev.mrg, test.mrg)
-and raw parsing data (word/tag format: dev.raw, test.raw).
+Each folder in `/data` (`negraall`, `negra30`, `tigerM15`, `tigerHN8`, `tigerM15pred_spmrl`)
+will contain discbracket format corpora (`train.mrg`, `dev.mrg`, `test.mrg`)
+and raw parsing data (word/tag format: `dev.raw`, `test.raw`).
 
 Train and parse
 ---------------
@@ -63,7 +63,7 @@ cd bin
 ./mtg_gcc -t ../data/tigerM15/train.mrg -d ../data/tigerM15/dev.mrg -i 30 -b 4 -f ../data/templates/gap13_s2fix.md -u -o model
 # -t <train> -d <dev> -i <iterations> -b <beamsize> -f <templates> -o <output>
 # -u replaces hapaxes in train by an "UNKNOWN" pseudo-word
-# ../data/templates/gap13_s2fix.md is the template config file for the full model (baseline+extended+spans)
+# ../data/templates/gap13_s2fix.md is the template config file for the full model (baseline+extended+spans, see article)
 
 # parse
 ./mtg_parse_gcc -x ../data/tigerM15/test.raw -b 4 -o model/parse.discbracket -m model
@@ -87,7 +87,7 @@ Transition systems
     Every derivation has same length. A shift is necessarily followed
     by either ghost-reduce or reduce-unary.
     A reduce-lr must be preceded by a unique cgap (possibly of order 0).
-    Derivations are $$4n-2$$ long (n shifts, n gr/ru, n-1 RR/RL, n-1 cgaps).
+    Derivations are 4n-2 long (n shifts, n gr/ru, n-1 RR/RL, n-1 cgaps).
 
 Classifiers
 -----------
@@ -104,7 +104,7 @@ Some technical details
 Single features are coded on a 32-bit integer. The first bits store
 the template unique id, and the rest stores the value for this template.
 
-$n$-grams templates consists in $n$ integers hashed by some hashing function
+n-grams templates consists in n integers hashed by some hashing function
 (Jenkins). Hashing collision are not resolved. Ths size of the hash table
 is fixed (experiments should take less than 6 Go of memory).
 To get a more memory-efficient parser you can change the constant
