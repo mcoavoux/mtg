@@ -3,7 +3,7 @@
 
 If you use this parser please cite (forthcoming):
 
-    Maximin Coavoux, Benoît Crabbé. Incremental Discontinuous Phrase Structure Parsing with the GAP Transition. EACL 2017.
+[Maximin Coavoux, Benoît Crabbé. Incremental Discontinuous Phrase Structure Parsing with the GAP Transition. EACL 2017.](http://www.llf.cnrs.fr/sites/llf.cnrs.fr/files/u485/eacl2017.pdf)
 
 This release is meant to replicate the experiments in the article.
 If you are interested in parsing standard constituency trees, or if you want to try
