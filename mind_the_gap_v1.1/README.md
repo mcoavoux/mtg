@@ -24,8 +24,8 @@ make wstring
 cd ..
 ```
 
-NB: without `wstring`, strings will be encoded with `wchar_t` instead
-of basic `char`, which will confuse the character bi-lstm.
+NB: without `wstring`, strings will be encoded with basic `char` instead
+of `wchar_t`, which will confuse the character bi-lstm.
 
 
 Parse:
@@ -33,7 +33,7 @@ Parse:
 ```bash
 cd ..
 cd bin
-./mtg_parse -x ../data/french.raw -b 1 -o corpus.parsed -m ../pretrained_models/FRENCH -F 1
+./mtg_parse -x ../data/french_ex.raw -b 1 -o corpus.parsed -m ../pretrained_models/FRENCH -F 1
 # -x <input> -b <beamsize> -o <output> -m <model> -F <format indication>
 ```
 
