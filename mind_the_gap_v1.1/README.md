@@ -11,7 +11,7 @@ Download headers for Eigen and Boost:
 
 ```bash
 cd lib
-bash get_dependencies.sh
+bash get_dependencies.bash
 cd ..
 ```
 
