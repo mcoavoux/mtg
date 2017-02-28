@@ -1,0 +1,20 @@
+learning rate	0.02
+decrease constant	1e-06
+gradient clipping	1
+clip value	5
+gaussian noise	1
+gaussian noise eta	0.01
+hidden layers	2
+size hidden layers	128
+embedding sizes	 16 32 16 4 4 4 4 4 4 4
+bi-rnn	1
+cell type	2
+rnn depth	4
+rnn state size	128
+number of token feature (rnn)	1
+char rnn	1
+char embedding size	32
+char based embedding size	32
+auxiliary task	1
+auxiliary task max idx	10
+voc sizes	 82 77222 56 7 6 6 5 5 5 4 44 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
