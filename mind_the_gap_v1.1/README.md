@@ -1,7 +1,7 @@
 
 This is the code of the multilingual shift-reduce constituency parser described in the following article:
 
-Maximin Coavoux, Benoît Crabbé. Multilingual Lexicalized Constituency Parsing with Word-Level Auxiliary Tasks. EACL 2017 (short). (pdf soon)
+Maximin Coavoux, Benoît Crabbé. Multilingual Lexicalized Constituency Parsing with Word-Level Auxiliary Tasks. EACL 2017 (short). [[pdf]](http://www.aclweb.org/anthology/E/E17/E17-2053.pdf) [[bib]](http://www.aclweb.org/anthology/E/E17/E17-2053.bib)
 
 
 Quick start
