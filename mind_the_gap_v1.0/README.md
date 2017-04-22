@@ -1,9 +1,9 @@
 
 **Mind the Gap** is a statistical parser for discontinuous constituent parsing.
 
-If you use this parser please cite (forthcoming):
+If you use this parser please cite :
 
-[Maximin Coavoux, Benoît Crabbé. Incremental Discontinuous Phrase Structure Parsing with the GAP Transition. EACL 2017.](http://www.llf.cnrs.fr/sites/llf.cnrs.fr/files/u485/eacl2017.pdf)
+Maximin Coavoux, Benoît Crabbé. Incremental Discontinuous Phrase Structure Parsing with the GAP Transition. EACL 2017. [[pdf]](http://www.aclweb.org/anthology/E/E17/E17-1118.pdf) [[bib]](http://www.aclweb.org/anthology/E/E17/E17-1118.bib)
 
 This release is meant to replicate the experiments in the article.
 If you are interested in parsing standard constituency trees, or if you want to try
@@ -32,11 +32,11 @@ This will create the training and parsing front-ends in `/bin`.
 Generate data sets
 ------------------
 
-To generate datasets, you need [discodop](https://github.com/andreasvc/disco-dop/) (Van Cranenburgh, 2016), [treetools](https://github.com/wmaier/treetools) and python>=3.3 installed on your system (note: `treetools` needs python2.7).
+To generate datasets, you need [discodop](https://github.com/andreasvc/disco-dop/) (Van Cranenburgh et al., 2016), [treetools](https://github.com/wmaier/treetools) and python>=3.3 installed on your system (note: `treetools` needs python2.7).
 The scripts uses `python3` command to call Python. You might need to create it as an alias / symlink to `python` if it is not available on your machine.
 
 To generate the Hall and Nivre's (2008) split and Maier's (2015) split
-(with gold tags, marmot predicted tags, and spmrl organizers' predicted tags).
+(with gold tags, marmot predicted tags, and SPMRL shared task organizers' predicted tags).
 
     cd data
     bash generate_tiger_data.sh
