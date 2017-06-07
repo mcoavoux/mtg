@@ -21,7 +21,7 @@ struct Options{
     string test_file;
     string output_file = "../experiments/foo_file";
     string model_dir;
-    int beamsize = 4;
+    int beamsize = 1;
     int unknown = Treebank::UNKNOWN_CODING;
     int format = 0;
 } options;
@@ -30,7 +30,7 @@ void print_help(){
     cout << endl << endl <<"This is Mind The Gap Parser, a transition based constituent parser that handles discontinuous constituents. Command line for loading a model and parsing" << endl << endl <<
 
         "Usage:" << endl <<
-        "      ./mrg_parse_gcc -x <testfile> -o <outputfile> -m <model dir> -b <beam size> -F <format id>" << endl << endl <<
+        "      ./mrg_parse -x <testfile> -o <outputfile> -m <model dir> -b <beam size> -F <format id>" << endl << endl <<
 
         "Options:" << endl <<
         "  -h     --help                  displays this message and quits" << endl <<
@@ -40,6 +40,17 @@ void print_help(){
         "  -m     --model     [STRING]    folder  containing a model" << endl <<
         "  -F     --inputfmt  [INT]       format 0) tok/tag (1 sentence per line)" << endl <<
         "                                        1) tok    tag    (<attribute>    )* (1 token per line)" << endl << endl;
+
+    cout << "If you do not provide either -x or -o option, the parser will read " << endl <<
+            "stdin (1 sentence per line, space separated tokens) and output only" << endl <<
+            "constituent trees on stdout. Warning: does only works for models" << endl <<
+            "that require only tokens as inputs (no tag or anything else)." << endl <<
+            "Example:" << endl << endl <<
+            "    echo \"Le chat mange une pomme .\" | ./mtg_parse -m ../pretrained_models/FRENCH -b 1 > output" << endl << endl;
+
+
+
+
 }
 
 int main(int argc, char *argv[]){
@@ -71,10 +82,10 @@ int main(int argc, char *argv[]){
     }
 
 
-    if (options.model_dir.empty()
-        || options.output_file.empty()
-        || options.test_file.empty()){
-            cerr << "At least one mandatory option is missing." << endl;
+    if (options.model_dir.empty()){
+//        || options.output_file.empty()
+//        || options.test_file.empty())
+            cerr << "At one mandatory option is missing." << endl;
             print_help();
             exit(0);
     }
@@ -87,34 +98,61 @@ int main(int argc, char *argv[]){
         options.unknown = Treebank::ENCODE_EVERYTHING;
     }
 
-    vector<vector<shared_ptr<Node>>> raw_test;
-    vector<vector<std::pair<String,String>>> str_raw_test;
+    if (! options.output_file.empty() && ! options.test_file.empty()){
 
-    // TODO: add options for unknown coding
-    Treebank::read_raw_input_sentences(options.test_file, raw_test, str_raw_test, options.format, options.unknown);
+        vector<vector<shared_ptr<Node>>> raw_test;
+        vector<vector<std::pair<String,String>>> str_raw_test;
 
-    Treebank final_pred;
+        // TODO: add options for unknown coding
+        Treebank::read_raw_input_sentences(options.test_file, raw_test, str_raw_test, options.format, options.unknown);
 
-    Logger logger;
-    logger.start();
-    mtg.predict_treebank(raw_test, options.beamsize, final_pred);
-    logger.stop();
+        Treebank final_pred;
 
-    int n_tokens = 0;
-    for (int i = 0; i < raw_test.size(); i++){
-        n_tokens += raw_test[i].size();
+        Logger logger;
+        logger.start();
+        mtg.predict_treebank(raw_test, options.beamsize, final_pred);
+        logger.stop();
+
+        int n_tokens = 0;
+        for (int i = 0; i < raw_test.size(); i++){
+            n_tokens += raw_test[i].size();
+        }
+        cerr << "Parsing time :" << endl;
+        cerr << "   n sentences     : " << raw_test.size() << endl;
+        cerr << "   n tokens        : " << n_tokens << endl;
+        cerr << "   time (seconds)  : " << logger.get_total_time() << endl;
+        cerr << n_tokens / logger.get_total_time() << " tokens per second" << endl;
+        cerr << raw_test.size() / logger.get_total_time() << " sentences per second" << endl;
+
+        final_pred.write_conll(options.output_file + ".conll", str_raw_test);
+        final_pred.detransform(*(mtg.ts->grammar_ptr()));
+        final_pred.write(options.output_file, str_raw_test);
+    }else{
+        vector<std::pair<String,String>> tmp;
+        string bline;
+        String line;
+        while(std::getline(cin, bline)){
+#ifdef WSTRING
+            line = str::decode(bline);
+#else
+            line = bline;
+#endif
+
+
+            vector<String> tokens;
+            vector<shared_ptr<Node>> sentence;
+            str::split(line, " ", "", tokens);
+            for (int i = 0; i < tokens.size(); i++){
+                vector<STRCODE> fields{enc::hodor.code(tokens[i], enc::TOK), enc::UNKNOWN};
+                sentence.push_back(shared_ptr<Node>(new Leaf(enc::UNKNOWN, i, fields)));
+            }
+            Tree tree;
+            mtg.predict_tree(sentence, options.beamsize, tree);
+            tree.unbinarize(*(mtg.ts->grammar_ptr()));
+            tree.write(cout,tmp);
+            cout << endl;
+        }
     }
-    cerr << "Parsing time :" << endl;
-    cerr << "   n sentences     : " << raw_test.size() << endl;
-    cerr << "   n tokens        : " << n_tokens << endl;
-    cerr << "   time (seconds)  : " << logger.get_total_time() << endl;
-    cerr << n_tokens / logger.get_total_time() << " tokens per second" << endl;
-    cerr << raw_test.size() / logger.get_total_time() << " sentences per second" << endl;
-
-    final_pred.write_conll(options.output_file + ".conll", str_raw_test);
-    final_pred.detransform(*(mtg.ts->grammar_ptr()));
-    final_pred.write(options.output_file, str_raw_test);
-
 }
 
 
