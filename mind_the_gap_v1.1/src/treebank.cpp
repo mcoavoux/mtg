@@ -639,6 +639,10 @@ void Treebank::read_raw_input_sentences_tbk(
     boost::trim(buffer);
     str::split(buffer, " \t", "", header);
 
+    if (header.size() == 1){
+        header.push_back("tag");
+    }
+
     vector<vector<String>> sentence;
 
     vector<String> tokens;
@@ -652,6 +656,9 @@ void Treebank::read_raw_input_sentences_tbk(
             sentence.clear();
         }else{
             if (tokens.size() > 0){
+                if (tokens.size() == 1){
+                    tokens.push_back(L"UNKNOWN");
+                }
                 assert(tokens.size() == header.size());
                 sentence.push_back(tokens);
             }
@@ -664,6 +671,9 @@ void Treebank::read_raw_input_sentences_tbk(
             sentence.clear();
         }else{
             if (tokens.size() > 0){
+                if (tokens.size() == 1){
+                    tokens.push_back("UNKNOWN");
+                }
                 assert(tokens.size() == header.size());
                 sentence.push_back(tokens);
             }
