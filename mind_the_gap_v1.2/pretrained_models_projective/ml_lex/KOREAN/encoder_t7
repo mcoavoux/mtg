@@ -1,0 +1,17 @@
+UNKNOWN
+UNDEF
+predicate+predicate
+common+topic
+common
+topic+common
+predicate
+common+predicate
+predicate+final
+topic
+predicate+topic
+predicate+common
+common+common
+final
+common+common+topic
+topic+topic
+common+predicate+common

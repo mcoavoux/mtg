@@ -1,0 +1,19 @@
+auxiliary task	1
+auxiliary task max idx	50
+bi-rnn	1
+cell type	2
+char based embedding size	32
+char embedding size	32
+char rnn	1
+clip value	5.0
+decrease constant	1e-06
+embedding sizes	16 32 16 4 4 8 4 4 8 4 4
+gaussian noise	1
+gaussian noise eta	0.01
+gradient clipping	1
+hidden layers	2
+learning rate	0.01
+number of token feature (rnn)	1
+rnn depth	4
+rnn state size	128
+size hidden layers	128

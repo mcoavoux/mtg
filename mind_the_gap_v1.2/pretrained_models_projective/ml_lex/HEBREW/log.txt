@@ -1,0 +1,121 @@
+Known voc sizes
+Type 0 112
+Type 1 15977
+Type 2 52
+Type 3 4
+Type 4 5
+Type 5 6
+Type 6 4
+Type 7 4
+Type 8 4
+Type 9 5
+Type 10 6
+Type 11 44
+Unknown policy dev 0
+Max type id = 1
+Lookup table 0 has 16 dimensions (vocsize = 279)
+Lookup table 1 has 32 dimensions (vocsize = 15977) hodor size = 16833
+
+Summary
+=======
+
+- Transition System: lexicalized merge-label (projective version), actions=[shift, left, right, label / no label, idle]
+- feature extractor 3
+- Classifier:bi-rnn feature extractor + 2 feedforward networks for structure and label actions
+learning rate	0.02
+decrease constant	1e-06
+gradient clipping	1
+clip value	5
+gaussian noise	1
+gaussian noise eta	0.01
+hidden layers	2
+size hidden layers	128
+embedding sizes	 16 32 16 4 4 4 4 4 4 4 4
+bi-rnn	1
+cell type	2
+rnn depth	4
+rnn state size	128
+number of token feature (rnn)	1
+char rnn	1
+char embedding size	32
+char based embedding size	32
+auxiliary task	1
+auxiliary task max idx	11
+voc sizes	 112 15977 52 4 5 6 4 4 4 5 6 44 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+Auxiliary tasks summary:
+    task 0: output size = 52
+    task 1: output size = 4
+    task 2: output size = 5
+    task 3: output size = 6
+    task 4: output size = 4
+    task 5: output size = 4
+    task 6: output size = 4
+    task 7: output size = 5
+    task 8: output size = 6
+    task 9: output size = 44
+Using RNN lexicalized label structure class
+- Number of actions: 207
+- Number of templates: 6
+- Number of training epochs: 30
+- Size of beam: 1
+- Results will be written in merge12_uncat_unlex_july48/HEBREW/488l0.02d1e-06c15.0g10.01_h2s128dep4rnn128c1e32cb32aux1
+- Number of sentences in 
+    - train: 5000
+    - dev: 500
+- Known vocabulary size: 16833
+Training started
+Epoch 0  train={F=81.78 P=81.91 R=81.65} dev={F=80.53 P=80.79 R=80.27} up=0    train aux = { 0=90.8 1=96.54 2=97.06 3=96.48 4=99.74 5=99.25 6=99.05 7=99.24 8=97.9 9=74.73 cm=66.45 }  dev aux = { 0=89.81 1=94.96 2=95.69 3=96.47 4=99.74 5=99.42 6=99.31 7=99.44 8=98.07 9=75.67 cm=66.83 }
+Epoch 1  train={F=87.22 P=87.66 R=86.79} dev={F=84.86 P=85.44 R=84.28} up=0    train aux = { 0=94.76 1=98.07 2=98.23 3=97.94 4=99.9 5=99.51 6=99.41 7=99.5 8=98.89 9=78.9 cm=73.84 }  dev aux = { 0=92.68 1=96.51 2=96.79 3=97.31 4=99.89 5=99.53 6=99.55 7=99.54 8=98.63 9=79.34 cm=72.65 }
+Epoch 2  train={F=89.69 P=90.06 R=89.33} dev={F=86.42 P=86.91 R=85.94} up=0    train aux = { 0=96.37 1=98.65 2=98.64 3=98.56 4=99.95 5=99.68 6=99.62 7=99.63 8=99.24 9=81.3 cm=77.41 }  dev aux = { 0=93.89 1=96.88 2=97.08 3=97.77 4=99.92 5=99.6 6=99.61 7=99.6 8=98.89 9=80.75 cm=75.08 }
+Epoch 3  train={F=91.12 P=91.47 R=90.79} dev={F=87.39 P=87.88 R=86.91} up=0    train aux = { 0=97.32 1=99.04 2=98.93 3=98.8 4=99.96 5=99.76 6=99.76 7=99.75 8=99.41 9=83.04 cm=79.93 }  dev aux = { 0=94.41 1=96.99 2=97.21 3=98.01 4=99.93 5=99.65 6=99.63 7=99.63 8=99.03 9=81.53 cm=76.35 }
+Exporting classifier weights
+Exporting transition system and grammar
+Exporting feature templates
+Epoch 4  train={F=92.07 P=92.44 R=91.71} dev={F=88.12 P=88.62 R=87.62} up=0    train aux = { 0=97.79 1=99.24 2=99.19 3=99.06 4=99.97 5=99.91 6=99.83 7=99.79 8=99.53 9=84.26 cm=81.54 }  dev aux = { 0=94.66 1=97.14 2=97.31 3=98.14 4=99.94 5=99.65 6=99.63 7=99.64 8=99.14 9=82.28 cm=77.27 }
+Epoch 5  train={F=92.98 P=93.32 R=92.63} dev={F=88.59 P=89.08 R=88.12} up=0    train aux = { 0=98.11 1=99.42 2=99.39 3=99.2 4=99.98 5=99.94 6=99.9 7=99.81 8=99.64 9=85.48 cm=83.15 }  dev aux = { 0=94.96 1=97.15 2=97.33 3=98.22 4=99.92 5=99.67 6=99.66 7=99.64 8=99.15 9=82.78 cm=77.93 }
+Epoch 6  train={F=93.84 P=94.15 R=93.53} dev={F=88.86 P=89.32 R=88.41} up=0    train aux = { 0=98.37 1=99.58 2=99.53 3=99.31 4=99.98 5=99.94 6=99.92 7=99.85 8=99.68 9=86.49 cm=84.51 }  dev aux = { 0=95.04 1=97.25 2=97.35 3=98.19 4=99.94 5=99.72 6=99.67 7=99.67 8=99.13 9=83.13 cm=78.36 }
+Epoch 7  train={F=94.54 P=94.8 R=94.27} dev={F=89.07 P=89.48 R=88.66} up=0    train aux = { 0=98.54 1=99.67 2=99.59 3=99.4 4=99.98 5=99.96 6=99.92 7=99.87 8=99.69 9=87.36 cm=85.53 }  dev aux = { 0=95.17 1=97.27 2=97.43 3=98.19 4=99.94 5=99.71 6=99.71 7=99.65 8=99.15 9=83.36 cm=78.67 }
+Exporting classifier weights
+Exporting transition system and grammar
+Exporting feature templates
+Epoch 8  train={F=94.98 P=95.18 R=94.77} dev={F=89.36 P=89.8 R=88.93} up=0    train aux = { 0=98.75 1=99.72 2=99.68 3=99.5 4=99.98 5=99.98 6=99.95 7=99.89 8=99.78 9=88.06 cm=86.48 }  dev aux = { 0=95.31 1=97.27 2=97.45 3=98.24 4=99.94 5=99.73 6=99.72 7=99.66 8=99.14 9=83.43 cm=78.9 }
+Epoch 9  train={F=95.45 P=95.63 R=95.27} dev={F=89.49 P=89.88 R=89.1} up=0    train aux = { 0=98.89 1=99.79 2=99.72 3=99.58 4=99.98 5=99.98 6=99.97 7=99.89 8=99.82 9=88.77 cm=87.38 }  dev aux = { 0=95.35 1=97.26 2=97.46 3=98.27 4=99.94 5=99.72 6=99.72 7=99.66 8=99.13 9=83.6 cm=79.1 }
+Epoch 10  train={F=95.84 P=95.99 R=95.68} dev={F=89.67 P=90.05 R=89.3} up=0    train aux = { 0=98.99 1=99.8 2=99.82 3=99.63 4=99.98 5=99.98 6=99.98 7=99.9 8=99.83 9=89.35 cm=88.06 }  dev aux = { 0=95.53 1=97.25 2=97.5 3=98.28 4=99.94 5=99.73 6=99.71 7=99.69 8=99.14 9=83.68 cm=79.22 }
+Epoch 11  train={F=96.09 P=96.24 R=95.94} dev={F=89.74 P=90.09 R=89.39} up=0    train aux = { 0=99.09 1=99.84 2=99.83 3=99.65 4=99.98 5=99.99 6=99.99 7=99.91 8=99.88 9=89.89 cm=88.74 }  dev aux = { 0=95.52 1=97.31 2=97.48 3=98.27 4=99.94 5=99.73 6=99.72 7=99.69 8=99.18 9=83.79 cm=79.33 }
+Exporting classifier weights
+Exporting transition system and grammar
+Exporting feature templates
+Epoch 12  train={F=96.46 P=96.6 R=96.32} dev={F=89.84 P=90.19 R=89.49} up=0    train aux = { 0=99.19 1=99.85 2=99.83 3=99.69 4=99.99 5=99.99 6=99.99 7=99.93 8=99.91 9=90.37 cm=89.33 }  dev aux = { 0=95.56 1=97.28 2=97.45 3=98.27 4=99.94 5=99.73 6=99.72 7=99.69 8=99.16 9=83.83 cm=79.29 }
+Epoch 13  train={F=96.84 P=96.94 R=96.73} dev={F=89.81 P=90.12 R=89.49} up=0    train aux = { 0=99.23 1=99.88 2=99.83 3=99.72 4=99.99 5=99.99 6=99.99 7=99.94 8=99.92 9=90.78 cm=89.78 }  dev aux = { 0=95.58 1=97.26 2=97.48 3=98.25 4=99.94 5=99.73 6=99.72 7=99.68 8=99.19 9=83.87 cm=79.38 }
+Epoch 14  train={F=97.12 P=97.23 R=97.02} dev={F=89.86 P=90.17 R=89.56} up=0    train aux = { 0=99.29 1=99.89 2=99.85 3=99.72 4=100 5=99.99 6=99.99 7=99.94 8=99.92 9=91.31 cm=90.34 }  dev aux = { 0=95.63 1=97.26 2=97.47 3=98.28 4=99.94 5=99.73 6=99.72 7=99.68 8=99.2 9=83.92 cm=79.44 }
+Epoch 15  train={F=97.3 P=97.37 R=97.23} dev={F=89.79 P=90.09 R=89.5} up=0    train aux = { 0=99.35 1=99.92 2=99.87 3=99.74 4=100 5=99.99 6=99.99 7=99.95 8=99.93 9=91.79 cm=90.91 }  dev aux = { 0=95.57 1=97.28 2=97.47 3=98.3 4=99.94 5=99.73 6=99.73 7=99.68 8=99.21 9=83.92 cm=79.52 }
+Exporting classifier weights
+Exporting transition system and grammar
+Exporting feature templates
+Epoch 16  train={F=97.61 P=97.68 R=97.54} dev={F=89.97 P=90.29 R=89.65} up=0    train aux = { 0=99.37 1=99.92 2=99.88 3=99.77 4=99.99 5=99.99 6=99.99 7=99.95 8=99.94 9=92.15 cm=91.3 }  dev aux = { 0=95.51 1=97.29 2=97.46 3=98.28 4=99.94 5=99.74 6=99.73 7=99.69 8=99.22 9=83.98 cm=79.52 }
+Epoch 17  train={F=97.85 P=97.92 R=97.78} dev={F=90.04 P=90.34 R=89.74} up=0    train aux = { 0=99.46 1=99.93 2=99.89 3=99.81 4=99.99 5=100 6=99.99 7=99.95 8=99.94 9=92.64 cm=91.91 }  dev aux = { 0=95.52 1=97.27 2=97.45 3=98.34 4=99.94 5=99.75 6=99.73 7=99.69 8=99.23 9=84.01 cm=79.55 }
+Epoch 18  train={F=98.08 P=98.17 R=98} dev={F=89.97 P=90.26 R=89.68} up=0    train aux = { 0=99.47 1=99.94 2=99.89 3=99.81 4=99.99 5=100 6=99.99 7=99.95 8=99.95 9=92.94 cm=92.21 }  dev aux = { 0=95.53 1=97.31 2=97.45 3=98.33 4=99.94 5=99.73 6=99.73 7=99.68 8=99.25 9=84.12 cm=79.62 }
+Epoch 19  train={F=98.26 P=98.32 R=98.19} dev={F=90.03 P=90.31 R=89.75} up=0    train aux = { 0=99.52 1=99.94 2=99.91 3=99.83 4=99.99 5=100 6=99.99 7=99.96 8=99.95 9=93.35 cm=92.65 }  dev aux = { 0=95.57 1=97.29 2=97.44 3=98.38 4=99.94 5=99.73 6=99.73 7=99.69 8=99.25 9=84.05 cm=79.59 }
+Exporting classifier weights
+Exporting transition system and grammar
+Exporting feature templates
+Epoch 20  train={F=98.44 P=98.49 R=98.38} dev={F=90.01 P=90.28 R=89.73} up=0    train aux = { 0=99.53 1=99.95 2=99.9 3=99.85 4=100 5=100 6=99.99 7=99.96 8=99.96 9=93.75 cm=93.08 }  dev aux = { 0=95.61 1=97.3 2=97.47 3=98.41 4=99.94 5=99.73 6=99.73 7=99.69 8=99.25 9=84.04 cm=79.59 }
+Epoch 21  train={F=98.58 P=98.65 R=98.52} dev={F=90 P=90.3 R=89.71} up=0    train aux = { 0=99.58 1=99.95 2=99.91 3=99.85 4=100 5=100 6=99.99 7=99.96 8=99.96 9=93.97 cm=93.33 }  dev aux = { 0=95.58 1=97.28 2=97.49 3=98.43 4=99.94 5=99.73 6=99.73 7=99.69 8=99.23 9=84.01 cm=79.52 }
+Epoch 22  train={F=98.68 P=98.74 R=98.61} dev={F=90.05 P=90.34 R=89.77} up=0    train aux = { 0=99.6 1=99.96 2=99.92 3=99.85 4=100 5=100 6=99.99 7=99.96 8=99.97 9=94.35 cm=93.73 }  dev aux = { 0=95.58 1=97.31 2=97.5 3=98.42 4=99.94 5=99.73 6=99.73 7=99.69 8=99.24 9=83.98 cm=79.51 }
+Epoch 23  train={F=98.78 P=98.84 R=98.72} dev={F=90.1 P=90.34 R=89.85} up=0    train aux = { 0=99.63 1=99.96 2=99.94 3=99.87 4=100 5=100 6=99.99 7=99.97 8=99.98 9=94.66 cm=94.11 }  dev aux = { 0=95.54 1=97.3 2=97.55 3=98.41 4=99.94 5=99.73 6=99.73 7=99.69 8=99.24 9=84.02 cm=79.55 }
+Exporting classifier weights
+Exporting transition system and grammar
+Exporting feature templates
+Epoch 24  train={F=98.9 P=98.94 R=98.85} dev={F=90.08 P=90.32 R=89.85} up=0    train aux = { 0=99.66 1=99.96 2=99.94 3=99.89 4=100 5=100 6=99.99 7=99.98 8=99.98 9=94.93 cm=94.4 }  dev aux = { 0=95.5 1=97.31 2=97.52 3=98.41 4=99.95 5=99.73 6=99.73 7=99.69 8=99.25 9=84.11 cm=79.67 }
+Epoch 25  train={F=99.01 P=99.05 R=98.98} dev={F=90.07 P=90.32 R=89.83} up=0    train aux = { 0=99.68 1=99.96 2=99.94 3=99.91 4=100 5=100 6=100 7=99.98 8=99.99 9=95.13 cm=94.66 }  dev aux = { 0=95.49 1=97.31 2=97.54 3=98.42 4=99.95 5=99.73 6=99.73 7=99.69 8=99.25 9=84.01 cm=79.59 }
+Epoch 26  train={F=99.12 P=99.15 R=99.1} dev={F=90.06 P=90.3 R=89.83} up=0    train aux = { 0=99.71 1=99.97 2=99.94 3=99.91 4=100 5=100 6=100 7=99.98 8=99.99 9=95.37 cm=94.93 }  dev aux = { 0=95.46 1=97.32 2=97.54 3=98.4 4=99.96 5=99.73 6=99.72 7=99.69 8=99.24 9=83.89 cm=79.43 }
+Epoch 27  train={F=99.18 P=99.2 R=99.16} dev={F=90.08 P=90.31 R=89.85} up=0    train aux = { 0=99.71 1=99.97 2=99.95 3=99.92 4=100 5=100 6=100 7=99.98 8=99.99 9=95.51 cm=95.08 }  dev aux = { 0=95.43 1=97.3 2=97.54 3=98.4 4=99.96 5=99.73 6=99.73 7=99.69 8=99.22 9=83.93 cm=79.43 }
+Exporting classifier weights
+Exporting transition system and grammar
+Exporting feature templates
+Epoch 28  train={F=99.25 P=99.27 R=99.24} dev={F=90.1 P=90.32 R=89.87} up=0    train aux = { 0=99.73 1=99.96 2=99.96 3=99.96 4=100 5=100 6=100 7=99.98 8=99.99 9=95.7 cm=95.3 }  dev aux = { 0=95.43 1=97.3 2=97.55 3=98.39 4=99.96 5=99.72 6=99.73 7=99.69 8=99.25 9=83.92 cm=79.44 }
+Epoch 29  train={F=99.34 P=99.34 R=99.33} dev={F=90.14 P=90.38 R=89.89} up=0    train aux = { 0=99.73 1=99.96 2=99.98 3=99.96 4=100 5=100 6=100 7=99.98 8=99.99 9=95.82 cm=95.44 }  dev aux = { 0=95.43 1=97.33 2=97.55 3=98.37 4=99.96 5=99.72 6=99.73 7=99.69 8=99.26 9=83.87 cm=79.39 }
+
+Exporting classifier weights
+Exporting transition system and grammar
+Exporting feature templates
