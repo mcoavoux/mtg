@@ -34,7 +34,7 @@ void print_help(){
         "      ./mrg_parse_gcc -x <testfile> -o <outputfile> -m <model dir> -b <beam size> -F <format id>" << endl <<
         "  (2)   " << endl <<
         "      ./mrg_parse_gcc -m <model dir> -b <beam size> < input > ouput" << endl <<
-        "  (3) "
+        "  (3)   " << endl <<
         "      ./mrg_parse_gcc -m <model dir> -b <beam size> file1 [file2 [file3 ... ]]" << endl << endl <<
 
         "Options:" << endl <<
