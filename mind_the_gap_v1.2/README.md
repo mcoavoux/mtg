@@ -19,6 +19,7 @@ Compile:
 ```bash
 mkdir bin
 cd src
+make clean
 make wstring
 cd ..
 ```
