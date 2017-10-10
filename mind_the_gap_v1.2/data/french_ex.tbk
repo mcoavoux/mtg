@@ -1,0 +1,29 @@
+word	tag	g	m	mwehead	n	p	s	t	pred	gdeprel
+<ROOT-head>
+   <SENT-head>
+      Pourtant	ADV	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	mod
+      ,	PONCT	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	w	UNDEF	UNDEF	ponct
+      <NP>
+         ce	DET	m	UNDEF	UNDEF	s	UNDEF	dem	UNDEF	UNDEF	det
+         "	PONCT	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	w	UNDEF	UNDEF	ponct
+         jet	NC-head	m	UNDEF	UNDEF	s	UNDEF	c	UNDEF	UNDEF	suj
+         <PP>
+            de	P-head	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	dep
+            <NP>
+               l'	DET	f	UNDEF	UNDEF	s	UNDEF	def	UNDEF	UNDEF	det
+               éponge	NC-head	f	UNDEF	UNDEF	s	UNDEF	c	UNDEF	UNDEF	obj.p
+            </NP>
+         </PP>
+         "	PONCT	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	w	UNDEF	UNDEF	ponct
+      </NP>
+      <VN-head>
+         est	V-head	UNDEF	ind	UNDEF	s	3	UNDEF	pst	UNDEF	root
+      </VN>
+      <AP>
+         doublement	ADV	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	mod
+         paradoxal	ADJ-head	m	UNDEF	UNDEF	s	UNDEF	qual	UNDEF	UNDEF	ats
+      </AP>
+      .	PONCT	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	s	UNDEF	UNDEF	ponct
+   </SENT>
+</ROOT>
+
