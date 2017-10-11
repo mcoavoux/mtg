@@ -1,0 +1,110 @@
+word	tag	case	degree	gender	mood	number	person	tense	gdeprel
+<ROOT-head>
+   <VROOT-head>
+      <S>
+         Damit	KOUS	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	CP
+         <NP>
+            die	ART	nom	UNDEF	fem	UNDEF	sg	UNDEF	UNDEF	NK
+            bisherige	ADJA	nom	pos	fem	UNDEF	sg	UNDEF	UNDEF	NK
+            Obergrenze	NN-head	nom	UNDEF	fem	UNDEF	sg	UNDEF	UNDEF	SB
+            <NP>
+               der	ART	gen	UNDEF	neut	UNDEF	pl	UNDEF	UNDEF	NK
+               EU-Eigenmittel	NN-head	gen	UNDEF	neut	UNDEF	pl	UNDEF	UNDEF	AG
+            </NP>
+            <PP>
+               von	APPR-head	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	MNR
+               1,27	CARD	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	NK
+               Prozent	NN	*	UNDEF	neut	UNDEF	*	UNDEF	UNDEF	NK
+               <NP>
+                  des	ART	gen	UNDEF	neut	UNDEF	sg	UNDEF	UNDEF	NK
+                  Bruttosozialprodukts	NN-head	gen	UNDEF	neut	UNDEF	sg	UNDEF	UNDEF	AG
+               </NP>
+            </PP>
+         </NP>
+         <VP>
+            <VP>
+               <AP>
+                  auch	ADV	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	MO
+                  künftig	ADJD-head	UNDEF	pos	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	MO
+               </AP>
+               eingehalten	VVPP-head	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	OC
+            </VP>
+            werden	VAINF-head	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	OC
+         </VP>
+         könne	VMFIN-head	UNDEF	UNDEF	UNDEF	subj	sg	3	pres	MO
+      </S>
+      ,	$,	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	--
+      <S-head>
+         müßten	VMFIN-head	UNDEF	UNDEF	UNDEF	subj	pl	3	past	--
+         <NP>
+            Reformen	NN-head	nom	UNDEF	fem	UNDEF	pl	UNDEF	UNDEF	SB
+            <PP>
+               bei	APPR-head	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	MNR
+               den	ART	dat	UNDEF	masc	UNDEF	pl	UNDEF	UNDEF	NK
+               großen	ADJA	dat	pos	masc	UNDEF	pl	UNDEF	UNDEF	NK
+               Etatblöcken	NN	dat	UNDEF	masc	UNDEF	pl	UNDEF	UNDEF	NK
+            </PP>
+         </NP>
+         <VP>
+            angegangen	VVPP	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	OC
+            werden	VAINF-head	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	OC
+         </VP>
+      </S>
+      .	$.	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	--
+   </VROOT>
+</ROOT>
+
+<ROOT-head>
+   <VROOT-head>
+      Die	ART	nom	UNDEF	fem	UNDEF	pl	UNDEF	UNDEF	NK
+      Agrarausgaben	NN	nom	UNDEF	fem	UNDEF	pl	UNDEF	UNDEF	SB
+      ,	$,	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	--
+      <NP>
+         <S-head>
+            die	PRELS	nom	UNDEF	fem	UNDEF	pl	UNDEF	UNDEF	SB
+            bisher	ADV	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	MO
+            <NP>
+               rund	ADV	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	MO
+               die	ART	acc	UNDEF	fem	UNDEF	sg	UNDEF	UNDEF	NK
+               Hälfte	NN-head	acc	UNDEF	fem	UNDEF	sg	UNDEF	UNDEF	MO
+               <NP>
+                  des	ART	gen	UNDEF	masc	UNDEF	sg	UNDEF	UNDEF	NK
+                  Brüsseler	ADJA	*	pos	*	UNDEF	*	UNDEF	UNDEF	NK
+                  Haushalts	NN-head	gen	UNDEF	masc	UNDEF	sg	UNDEF	UNDEF	AG
+               </NP>
+            </NP>
+            ausmachen	VVFIN-head	UNDEF	UNDEF	UNDEF	ind	pl	3	pres	RC
+         </S>
+      </NP>
+      ,	$,	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	--
+      <S-head>
+         sind	VAFIN-head	UNDEF	UNDEF	UNDEF	ind	pl	3	pres	--
+         <VP>
+            <PP>
+               nach	APPR-head	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	MO
+               Ansicht	NN	dat	UNDEF	fem	UNDEF	sg	UNDEF	UNDEF	NK
+               <NP>
+                  der	ART	gen	UNDEF	fem	UNDEF	sg	UNDEF	UNDEF	NK
+                  SPD	NE-head	gen	UNDEF	fem	UNDEF	sg	UNDEF	UNDEF	AG
+               </NP>
+            </PP>
+            <PP>
+               durch	APPR-head	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	MO
+               eine	ART	acc	UNDEF	fem	UNDEF	sg	UNDEF	UNDEF	NK
+               Abkehr	NN	acc	UNDEF	fem	UNDEF	sg	UNDEF	UNDEF	NK
+               <PP>
+                  vom	APPRART-head	dat	UNDEF	neut	UNDEF	sg	UNDEF	UNDEF	OP
+                  bisherigen	ADJA	dat	pos	neut	UNDEF	sg	UNDEF	UNDEF	NK
+                  Subventionssystem	NN	dat	UNDEF	neut	UNDEF	sg	UNDEF	UNDEF	NK
+               </PP>
+            </PP>
+            deutlich	ADJD	UNDEF	pos	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	MO
+            <VZ-head>
+               zu	PTKZU	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	PM
+               reduzieren	VVINF-head	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	OC
+            </VZ>
+         </VP>
+      </S>
+      .	$.	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	--
+   </VROOT>
+</ROOT>

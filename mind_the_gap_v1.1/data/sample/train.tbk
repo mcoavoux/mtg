@@ -1,0 +1,88 @@
+word	tag	case	degree	gender	mood	number	person	tense	gdeprel
+<ROOT-head>
+   <VROOT-head>
+      ``	$LRB	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	--
+      <S-head>
+         <PN>
+            Ross	NE	nom	UNDEF	masc	UNDEF	sg	UNDEF	UNDEF	PNC
+            Perot	NE-head	nom	UNDEF	masc	UNDEF	sg	UNDEF	UNDEF	SB
+         </PN>
+         wäre	VAFIN-head	UNDEF	UNDEF	UNDEF	subj	sg	3	past	--
+         vielleicht	ADV	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	MO
+         <NP>
+            ein	ART	nom	UNDEF	masc	UNDEF	sg	UNDEF	UNDEF	NK
+            prächtiger	ADJA	nom	pos	masc	UNDEF	sg	UNDEF	UNDEF	NK
+            Diktator	NN-head	nom	UNDEF	masc	UNDEF	sg	UNDEF	UNDEF	PD
+         </NP>
+      </S>
+      ''	$LRB	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	--
+   </VROOT>
+</ROOT>
+
+<ROOT-head>
+   <VROOT-head>
+      <S-head>
+         Konzernchefs	NN	nom	UNDEF	masc	UNDEF	pl	UNDEF	UNDEF	SB
+         lehnen	VVFIN-head	UNDEF	UNDEF	UNDEF	ind	pl	3	pres	--
+         <NP>
+            den	ART	acc	UNDEF	masc	UNDEF	sg	UNDEF	UNDEF	NK
+            Milliardär	NN-head	acc	UNDEF	masc	UNDEF	sg	UNDEF	UNDEF	OA
+         </NP>
+         <PP>
+            als	APPR-head	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	MO
+            US-Präsidenten	NN	acc	UNDEF	masc	UNDEF	sg	UNDEF	UNDEF	NK
+         </PP>
+         ab	PTKVZ	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	SVP
+      </S>
+      /	$LRB	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	--
+   </VROOT>
+</ROOT>
+
+<ROOT-head>
+   <S-head>
+      Texaner	NN	nom	UNDEF	masc	UNDEF	sg	UNDEF	UNDEF	SB
+      gibt	VVFIN-head	UNDEF	UNDEF	UNDEF	ind	sg	3	pres	--
+      <NP>
+         <AP>
+            nur	ADV	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	MO
+            vage	ADJA-head	acc	pos	fem	UNDEF	sg	UNDEF	UNDEF	NK
+         </AP>
+         Auskunft	NN-head	acc	UNDEF	fem	UNDEF	sg	UNDEF	UNDEF	OA
+         <PP>
+            über	APPR-head	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	MNR
+            seine	PPOSAT	acc	UNDEF	fem	UNDEF	sg	UNDEF	UNDEF	NK
+            Wirtschaftspolitik	NN	acc	UNDEF	fem	UNDEF	sg	UNDEF	UNDEF	NK
+         </PP>
+      </NP>
+   </S>
+</ROOT>
+
+<ROOT-head>
+   <VROOT-head>
+      <S-head>
+         <NP>
+            Der	ART	nom	UNDEF	masc	UNDEF	sg	UNDEF	UNDEF	NK
+            texanische	ADJA	nom	pos	masc	UNDEF	sg	UNDEF	UNDEF	NK
+            Milliardär	NN-head	nom	UNDEF	masc	UNDEF	sg	UNDEF	UNDEF	SB
+            <PN>
+               Ross	NE	nom	UNDEF	masc	UNDEF	sg	UNDEF	UNDEF	PNC
+               Perot	NE-head	nom	UNDEF	masc	UNDEF	sg	UNDEF	UNDEF	NK
+            </PN>
+         </NP>
+         hat	VAFIN-head	UNDEF	UNDEF	UNDEF	ind	sg	3	pres	--
+         <VP>
+            <NP>
+               das	ART	acc	UNDEF	neut	UNDEF	sg	UNDEF	UNDEF	NK
+               politische	ADJA	acc	pos	neut	UNDEF	sg	UNDEF	UNDEF	NK
+               Establishment	NN-head	acc	UNDEF	neut	UNDEF	sg	UNDEF	UNDEF	OA
+               <PP>
+                  in	APPR-head	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	MNR
+                  Washington	NE	dat	UNDEF	neut	UNDEF	sg	UNDEF	UNDEF	NK
+               </PP>
+            </NP>
+            aufgeschreckt	VVPP-head	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	OC
+         </VP>
+      </S>
+      .	$.	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	UNDEF	--
+   </VROOT>
+</ROOT>
