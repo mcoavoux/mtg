@@ -96,22 +96,22 @@ Positions in the stack are addressed with `W 0`, `S 0`, `S 1`, etc...
 See `/data/hyperparameters` for an example.
 
     learning rate	0.02        # typical values: 0.01, 0.02
-    decrease constant	1e-06   # 1e-6 / 0
-    gradient clipping	1       # use hard gradient clipping (0 or 1)
-    clip value	5               # clip every coefficient in gradient with abs value > 5
+    decrease constant	1e-06       # 1e-6 / 0
+    gradient clipping	1           # use hard gradient clipping (0 or 1)
+    clip value	5                   # clip every coefficient in gradient with abs value > 5
     gaussian noise	1           # adds some gaussian noise to gradient (0 or 1)
-    gaussian noise eta	0.01    # value for gaussian noise
+    gaussian noise eta	0.01        # value for gaussian noise
     hidden layers	2           # number of hidden layers in action classifier (typical values: 1, 2)
-    size hidden layers	32      # size of hidden layers for action classifier (32, 64, 128, 256)
+    size hidden layers	32          # size of hidden layers for action classifier (32, 64, 128, 256)
     embedding sizes	 16 32 16 4 4 4 4 # size of symmbol embeddings [non-terminal, token, tag, morph1, morpho2, etc] (when predicted morpho is used as input)
     bi-rnn	1                           # use a bi-rnn feature 
-    cell type	2                       # use LSTM cells in bi-rnn (0: SRNN, 1: GRU)
-    rnn depth	4                       # number of layers of bi-rnn (2: 1 layer, 4: 2 layers)
+    cell type	2                           # use LSTM cells in bi-rnn (0: SRNN, 1: GRU)
+    rnn depth	4                           # number of layers of bi-rnn (2: 1 layer, 4: 2 layers)
     rnn state size	32                  # size of lstm states (forward and backward), (64, 128, 256)
     number of token feature (rnn)	1   # number of items used as input to the bi-rnn: 1=only use token, 2=use token+tag, 3=use token+tag+morph1, etc.
-    char rnn	1                       # use a character bi-rnn to construct char-based embeddings (on top on standard embeddings). value: 0 or 1
-    char embedding size	16              # size of character embeddings
-    char based embedding size	16      # size of rnn states for character bi-rnn
+    char rnn	1                           # use a character bi-rnn to construct char-based embeddings (on top on standard embeddings). value: 0 or 1
+    char embedding size	16                  # size of character embeddings
+    char based embedding size	16          # size of rnn states for character bi-rnn
     auxiliary task	1                   # use auxiliary tasks
     auxiliary task max idx	20          # index of 
 
