@@ -957,6 +957,27 @@ CharBiRnnFeatureExtractor::CharBiRnnFeatureExtractor(CharRnnParameters *nn_param
 
 CharBiRnnFeatureExtractor::~CharBiRnnFeatureExtractor(){}
 
+void CharBiRnnFeatureExtractor::precompute_lstm_char(){
+    cerr << "Precomputing char-lstm for known words" << endl;
+    vector<shared_ptr<Node>> fake_buffer; // contain the list of tokens in vocabulary
+    for (STRCODE i = 0; i < enc::hodor.size(enc::TOK); i++){
+        const vector<STRCODE> morph{i};
+        fake_buffer.push_back(shared_ptr<Node>(new Leaf(i,i,morph)));
+    }
+    build_computation_graph(fake_buffer);
+    fprop();
+
+    for (STRCODE i = 0; i < enc::hodor.size(enc::TOK); i++){
+        vector<Vec> pair{*(states[i][0].back()->v()), *(states[i][1].front()->v())};
+        precomputed_embeddings.push_back(pair);
+    }
+    cerr << "Precomputing char-lstm for known words: done" << endl;
+}
+
+bool CharBiRnnFeatureExtractor::has_precomputed(){
+    return precomputed_embeddings.size() > 0;
+}
+
 void CharBiRnnFeatureExtractor::init_encoders(){
     encoder.init();
     lu = LookupTable(encoder.char_voc_size(), params->dim_char);
@@ -975,40 +996,50 @@ void CharBiRnnFeatureExtractor::build_computation_graph(vector<shared_ptr<Node>>
 
     for (int w = 0; w < input.size(); w++){
         STRCODE tokcode = buffer[w]->get_field(Leaf::FIELD_TOK);
-        vector<int> *sequence = encoder(tokcode);
-        for (int c = 0; c < sequence->size(); c++){
-            shared_ptr<VecParam> e;
-            lu.get(sequence->at(c), e);
-            vector<shared_ptr<AbstractNeuralNode>> proxy{shared_ptr<AbstractNeuralNode>(new LookupNode(*e))};
-            input[w].push_back(proxy);
-        }
 
-        states[w] = {vector<shared_ptr<AbstractNeuralNode>>(sequence->size()),
-                     vector<shared_ptr<AbstractNeuralNode>>(sequence->size())};
+        // If a precomputed vector is available
+        if (tokcode < precomputed_embeddings.size()){
+            shared_ptr<AbstractNeuralNode> forwardnode(new ConstantNode(&precomputed_embeddings[tokcode][0]));
+            shared_ptr<AbstractNeuralNode> backwardnode(new ConstantNode(&precomputed_embeddings[tokcode][1]));
+            vector<shared_ptr<AbstractNeuralNode>> forward{forwardnode};
+            vector<shared_ptr<AbstractNeuralNode>> backward{backwardnode};
+            states[w] = {forward, backward};
+        }else{
+            vector<int> *sequence = encoder(tokcode);
+            for (int c = 0; c < sequence->size(); c++){
+                shared_ptr<VecParam> e;
+                lu.get(sequence->at(c), e);
+                vector<shared_ptr<AbstractNeuralNode>> proxy{shared_ptr<AbstractNeuralNode>(new LookupNode(*e))};
+                input[w].push_back(proxy);
+            }
 
-        int depth = 0;
-        states[w][depth][0] = shared_ptr<AbstractNeuralNode>(
-                    new LstmNode(params->dim_char_based_embeddings,
-                                 init_nodes[depth],
-                                 input[w][0],*layers[depth]));
+            states[w] = {vector<shared_ptr<AbstractNeuralNode>>(sequence->size()),
+                         vector<shared_ptr<AbstractNeuralNode>>(sequence->size())};
 
-        for (int c = 1; c < sequence->size(); c++){
-            states[w][depth][c] = shared_ptr<AbstractNeuralNode>(
+            int depth = 0;
+            states[w][depth][0] = shared_ptr<AbstractNeuralNode>(
                         new LstmNode(params->dim_char_based_embeddings,
-                                     states[w][depth][c-1],
-                        input[w][c], *layers[depth]));
-        }
-        depth = 1;
-        states[w][depth].back() = shared_ptr<AbstractNeuralNode>(
-                    new LstmNode(params->dim_char_based_embeddings,
-                                 init_nodes[depth],
-                                 input[w].back(), *layers[depth]));
+                                     init_nodes[depth],
+                                     input[w][0],*layers[depth]));
 
-        for (int c = sequence->size()-2; c >= 0; c--){
-            states[w][depth][c] = shared_ptr<AbstractNeuralNode>(
+            for (int c = 1; c < sequence->size(); c++){
+                states[w][depth][c] = shared_ptr<AbstractNeuralNode>(
+                            new LstmNode(params->dim_char_based_embeddings,
+                                         states[w][depth][c-1],
+                            input[w][c], *layers[depth]));
+            }
+            depth = 1;
+            states[w][depth].back() = shared_ptr<AbstractNeuralNode>(
                         new LstmNode(params->dim_char_based_embeddings,
-                                     states[w][depth][c+1],
-                        input[w][c], *layers[depth]));
+                                     init_nodes[depth],
+                                     input[w].back(), *layers[depth]));
+
+            for (int c = sequence->size()-2; c >= 0; c--){
+                states[w][depth][c] = shared_ptr<AbstractNeuralNode>(
+                            new LstmNode(params->dim_char_based_embeddings,
+                                         states[w][depth][c+1],
+                            input[w][c], *layers[depth]));
+            }
         }
     }
 }
@@ -1143,10 +1174,10 @@ void CharBiRnnFeatureExtractor::reset_gradient_history(){
 
 
 
-BiRnnFeatureExtractor::BiRnnFeatureExtractor():train_time(false){}
+BiRnnFeatureExtractor::BiRnnFeatureExtractor():train_time(false), parse_time(false){}
 BiRnnFeatureExtractor::BiRnnFeatureExtractor(NeuralNetParameters *nn_parameters,
                       vector<LookupTable> *lookup)
-    :lu(lookup), params(nn_parameters), aux_start(0), aux_end(0), train_time(false){
+    :lu(lookup), params(nn_parameters), aux_start(0), aux_end(0), train_time(false), parse_time(false){
 
     vector<int> input_sizes;
 
@@ -1206,6 +1237,11 @@ BiRnnFeatureExtractor::BiRnnFeatureExtractor(NeuralNetParameters *nn_parameters,
 
 
 BiRnnFeatureExtractor::~BiRnnFeatureExtractor(){}
+
+void BiRnnFeatureExtractor::precompute_char_lstm(){
+    parse_time = true;
+    char_rnn.precompute_lstm_char();
+}
 
 void BiRnnFeatureExtractor::build_computation_graph(vector<shared_ptr<Node>> &buffer, bool aux_task){
 
@@ -1805,6 +1841,10 @@ Rnn::~Rnn(){
     for (int i = 0; i < layers.size(); i++){
         delete layers[i];
     }
+}
+
+void Rnn::precompute_char_lstm(){
+    rnn.precompute_char_lstm();
 }
 
 void Rnn::init_feature_types_and_lu(FeatureExtractor *fe){

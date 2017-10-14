@@ -53,6 +53,10 @@ Parser::~Parser(){
     delete fe;
 }
 
+void Parser::precompute_char_lstm(){
+    cf->precompute_char_lstm();
+}
+
 
 void Parser::summary(int beamsize, int epochs, const string &outdir, int train_size, int dev_size){
     cerr << endl;

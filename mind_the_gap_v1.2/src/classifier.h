@@ -59,6 +59,8 @@ public:
 
     virtual void print_stats(ostream &os);
 
+    virtual void precompute_char_lstm(){} // do nothing if I am not an rnn with char rnn
+
     double operator[](int i);
 
     int get_n_updates();
@@ -376,10 +378,15 @@ class CharBiRnnFeatureExtractor{
     vector<shared_ptr<Parameter>> parameters;
     SequenceEncoder encoder;
 
+    vector<vector<Vec>> precomputed_embeddings;
+
 public:
     CharBiRnnFeatureExtractor();
     CharBiRnnFeatureExtractor(CharRnnParameters *nn_parameters);
     ~CharBiRnnFeatureExtractor();
+
+    void precompute_lstm_char();
+    bool has_precomputed();
     void init_encoders();
     void build_computation_graph(vector<shared_ptr<Node>> &buffer);
     void add_init_node(int depth);
@@ -428,7 +435,7 @@ class BiRnnFeatureExtractor{
     CharBiRnnFeatureExtractor char_rnn;
 
     // Auxiliary task
-    static const int AUX_HIDDEN_LAYER_SIZE = 32;
+    //static const int AUX_HIDDEN_LAYER_SIZE = 32;
     vector<vector<shared_ptr<Layer>>> auxiliary_layers;
     vector<shared_ptr<Parameter>> auxiliary_parameters;
     vector<int> aux_output_sizes;
@@ -439,11 +446,15 @@ class BiRnnFeatureExtractor{
 
     bool train_time;
 
+    bool parse_time;
+
 public:
     BiRnnFeatureExtractor();
     BiRnnFeatureExtractor(NeuralNetParameters *nn_parameters, vector<LookupTable> *lookup);
 
     ~BiRnnFeatureExtractor();
+
+    void precompute_char_lstm();
 
     void build_computation_graph(vector<shared_ptr<Node>> &buffer, bool aux_task=false);
 
@@ -531,6 +542,8 @@ public:
 
     Rnn(int n_classes, FeatureExtractor *fe, NeuralNetParameters &params, bool initialize=true);
     virtual ~Rnn();
+
+    void precompute_char_lstm();
 
     void init_feature_types_and_lu(FeatureExtractor *fe);
 

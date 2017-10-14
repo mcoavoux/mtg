@@ -24,6 +24,7 @@ struct Options{
     int beamsize = 1;
     int unknown = Treebank::UNKNOWN_CODING;
     int format = 0;
+    bool precompute_char_lstm = false;
 } options;
 
 void print_help(){
@@ -44,7 +45,8 @@ void print_help(){
         "  -o     --out       [STRING]    output directory (where parse results will be written) [default=../experiments/foo]" << endl <<
         "  -m     --model     [STRING]    folder  containing a model" << endl <<
         "  -F     --inputfmt  [INT]       format 0) tok/tag (1 sentence per line)" << endl <<
-        "                                        1) tok    tag    (<attribute>    )* (1 token per line)" << endl << endl;
+        "                                        1) tok    tag    (<attribute>    )* (1 token per line)" << endl <<
+        "  -p     --precompute            precomputes char-based embeddings for known words (experimental)" << endl << endl;
 
     cout << "(2) format: 1 sentence per line, tokens separated by spaces" << endl <<
             "    outputs only const-trees, only works for models that require only" << endl <<
@@ -68,17 +70,19 @@ int main(int argc, char *argv[]){
             {"out", required_argument, 0, 'o'},
             {"model", required_argument, 0, 'm'},
             {"inputfmt", required_argument, 0, 'F'},
+            {"precompute", no_argument, 0, 'p'},
         };
         int option_index = 0;
-        char c = getopt_long (argc, argv, "hx:b:o:m:F:",long_options, &option_index);
+        char c = getopt_long (argc, argv, "hx:b:o:m:F:p",long_options, &option_index);
         if(c==-1){break;}
         switch(c){
         case 'h': print_help(); exit(0);
-        case 'x': options.test_file = optarg;       break;
-        case 'b': options.beamsize = atoi(optarg);  break;
-        case 'o': options.output_file = optarg;     break;
-        case 'm': options.model_dir = optarg;       break;
-        case 'F': options.format = atoi(optarg);    break;
+        case 'x': options.test_file = optarg;          break;
+        case 'b': options.beamsize = atoi(optarg);     break;
+        case 'o': options.output_file = optarg;        break;
+        case 'm': options.model_dir = optarg;          break;
+        case 'F': options.format = atoi(optarg);       break;
+        case 'p': options.precompute_char_lstm = true; break;
         default:
             cerr << "unknown option" << endl;
             print_help(); exit(0);
@@ -97,6 +101,10 @@ int main(int argc, char *argv[]){
     enc::hodor.import_model(options.model_dir);
 
     Parser mtg(options.model_dir);
+
+    if (options.precompute_char_lstm){
+        mtg.precompute_char_lstm();
+    }
 
     if (mtg.get_classifier_id() >= Classifier::FFNN){
         options.unknown = Treebank::ENCODE_EVERYTHING;

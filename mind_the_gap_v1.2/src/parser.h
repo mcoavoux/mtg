@@ -43,6 +43,8 @@ public:
 
     ~Parser();
 
+    void precompute_char_lstm();
+
     void summary(int beamsize, int epochs, const string &outdir, int train_size, int dev_size);
 
     void train_global(Treebank &train_tbk,

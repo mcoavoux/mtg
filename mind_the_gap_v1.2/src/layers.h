@@ -302,6 +302,16 @@ struct AbstractNeuralNode{
     virtual Vec* d()=0;         // get pointer to state derivative
 };
 
+
+struct ConstantNode:public AbstractNeuralNode{
+    Vec *state;
+    ConstantNode(Vec* vec):state(vec){}
+    void fprop(){}
+    void bprop(){}
+    Vec* v(){ return state;}
+    Vec* d(){ throw "Error"; }
+};
+
 /**
  * @brief The LookupNode struct is an input node
  *   (no predecessor nodes) serving as a place-holder
