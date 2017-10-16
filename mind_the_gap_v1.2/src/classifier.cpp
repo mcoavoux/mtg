@@ -962,16 +962,24 @@ void CharBiRnnFeatureExtractor::precompute_lstm_char(){
     vector<shared_ptr<Node>> fake_buffer; // contain the list of tokens in vocabulary
     for (STRCODE i = 0; i < enc::hodor.size(enc::TOK); i++){
         const vector<STRCODE> morph{i};
-        fake_buffer.push_back(shared_ptr<Node>(new Leaf(i,i,morph)));
-    }
-    build_computation_graph(fake_buffer);
-    fprop();
+        fake_buffer = {shared_ptr<Node>(new Leaf(i,i,morph))};
 
-    for (STRCODE i = 0; i < enc::hodor.size(enc::TOK); i++){
-        vector<Vec> pair{*(states[i][0].back()->v()), *(states[i][1].front()->v())};
+        build_computation_graph(fake_buffer);
+        fprop();
+
+        vector<Vec> pair{*(states[0][0].back()->v()), *(states[0][1].front()->v())};
         precomputed_embeddings.push_back(pair);
     }
+
+
+//    for (STRCODE i = 0; i < enc::hodor.size(enc::TOK); i++){
+//        vector<Vec> pair{*(states[i][0].back()->v()), *(states[i][1].front()->v())};
+//        precomputed_embeddings.push_back(pair);
+//    }
     cerr << "Precomputing char-lstm for known words: done" << endl;
+//    input.clear();
+//    states.clear();
+//    init_nodes.clear();
 }
 
 bool CharBiRnnFeatureExtractor::has_precomputed(){
