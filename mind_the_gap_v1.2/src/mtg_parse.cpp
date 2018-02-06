@@ -25,6 +25,7 @@ struct Options{
     int unknown = Treebank::UNKNOWN_CODING;
     int format = 0;
     bool precompute_char_lstm = false;
+    bool log_prob = false;
 } options;
 
 void print_help(){
@@ -46,7 +47,10 @@ void print_help(){
         "  -m     --model     [STRING]    folder  containing a model" << endl <<
         "  -F     --inputfmt  [INT]       format 0) tok/tag (1 sentence per line)" << endl <<
         "                                        1) tok    tag    (<attribute>    )* (1 token per line)" << endl <<
-        "  -p     --precompute            precomputes char-based embeddings for known words (experimental)" << endl << endl;
+        "  -p     --precompute            precomputes char-based embeddings for known words (experimental, higher loading time, faster parsing)" << endl <<
+        "  -L     --log-prob              outputs each tree with its log-probability (in discbracket file)" << endl;
+
+    cout << "In all cases, make sure you replace '(' and ')' in your input by '-LRB-' and '-RRB-'." << endl;
 
     cout << "(2) format: 1 sentence per line, tokens separated by spaces" << endl <<
             "    outputs only const-trees, only works for models that require only" << endl <<
@@ -71,9 +75,10 @@ int main(int argc, char *argv[]){
             {"model", required_argument, 0, 'm'},
             {"inputfmt", required_argument, 0, 'F'},
             {"precompute", no_argument, 0, 'p'},
+            {"log-prob", no_argument, 0, 'L'},
         };
         int option_index = 0;
-        char c = getopt_long (argc, argv, "hx:b:o:m:F:p",long_options, &option_index);
+        char c = getopt_long (argc, argv, "hx:b:o:m:F:pL",long_options, &option_index);
         if(c==-1){break;}
         switch(c){
         case 'h': print_help(); exit(0);
@@ -83,6 +88,7 @@ int main(int argc, char *argv[]){
         case 'm': options.model_dir = optarg;          break;
         case 'F': options.format = atoi(optarg);       break;
         case 'p': options.precompute_char_lstm = true; break;
+        case 'L': options.log_prob = true;             break;
         default:
             cerr << "unknown option" << endl;
             print_help(); exit(0);
@@ -142,7 +148,7 @@ int main(int argc, char *argv[]){
 
         final_pred.write_conll(options.output_file + ".conll", str_raw_test, unlexicalised);
         final_pred.detransform(*(mtg.ts->grammar_ptr()));
-        final_pred.write(options.output_file, str_raw_test);
+        final_pred.write(options.output_file, str_raw_test, options.log_prob);
 
         return 0;
     }
@@ -199,7 +205,7 @@ int main(int argc, char *argv[]){
 
             pred.write_conll(filename+".conll", str_raw_test, unlexicalised);
             pred.detransform(*(mtg.ts->grammar_ptr()));
-            pred.write(filename+".discbracket", str_raw_test);
+            pred.write(filename+".discbracket", str_raw_test, options.log_prob);
 
 
             logger.stop();
@@ -231,16 +237,9 @@ int main(int argc, char *argv[]){
             Tree tree;
             mtg.predict_tree(sentence, options.beamsize, tree);
             tree.unbinarize(*(mtg.ts->grammar_ptr()));
-            tree.write(cout,tmp);
+            tree.write(cout,tmp, options.log_prob);
             cout << endl;
         }
     }
 
 }
-
-
-
-
-
-
-

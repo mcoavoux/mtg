@@ -613,7 +613,10 @@ void Tree::extract_constituents(set<Constituent> &cset){
     root_->extract_constituents(cset);
 }
 
-void Tree::write(ostream &os, vector<std::pair<String,String>> &str_sentences){
+void Tree::write(ostream &os, vector<std::pair<String,String>> &str_sentences, bool prob){
+    if (prob){
+        os << this->score << "\t";
+    }
     root_->write(os, str_sentences);
 }
 
@@ -708,8 +711,3 @@ namespace eval{
         triple.gold += gs.size();
     }
 }
-
-
-
-
-

@@ -154,6 +154,7 @@ class Tree{
     shared_ptr<Node> root_;
     vector<shared_ptr<Node>> leafs;
 public:
+    float score = 0;
     Tree();
     Tree(const shared_ptr<Node> &root);
 //    Tree(const Tree &t);
@@ -182,7 +183,7 @@ public:
 
     void extract_constituents(set<Constituent> &cset);
 
-    void write(ostream &os, vector<std::pair<String, String> > &str_sentences);
+    void write(ostream &os, vector<std::pair<String, String> > &str_sentences, bool prob=false);
     void write_conll(ostream &os, vector<std::pair<String, String>> &str_sentences, int deprel_idx, bool unlex);
 
     friend ostream& operator<<(ostream &os, const Tree &tree);

@@ -345,10 +345,10 @@ void Treebank::write(const string& filename){
     os.close();
 }
 
-void Treebank::write(const string& filename, vector<vector<std::pair<String, String> > > &str_sentences){
+void Treebank::write(const string& filename, vector<vector<std::pair<String, String> > > &str_sentences, bool prob){
     ofstream os(filename);
     for (int i = 0; i < trees_.size(); i++){
-        trees_[i].write(os, str_sentences[i]);
+        trees_[i].write(os, str_sentences[i], prob);
         os << endl;
     }
     os.close();

@@ -109,7 +109,7 @@ public:
 
     void write(const string& filename);
 
-    void write(const string& filename, vector<vector<std::pair<String,String>>> &str_sentences);  // write in output file, if unknown token -> use str_sentences to retrieve correct string
+    void write(const string& filename, vector<vector<std::pair<String,String>>> &str_sentences, bool prob=false);  // write in output file, if unknown token -> use str_sentences to retrieve correct string
     void write_conll(const string& filename, vector<vector<std::pair<String, String> > > &str_sentences, bool unlex);
 
 

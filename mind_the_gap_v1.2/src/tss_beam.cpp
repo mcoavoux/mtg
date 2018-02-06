@@ -410,6 +410,7 @@ void TssBeam::best_tree(Tree &t){
     shared_ptr<Node> node;
     best->get_top_node(node);
     t = Tree(node);
+    t.score = max_score;
 }
 
 bool TssBeam::finished(const Grammar &grammar){
@@ -430,7 +431,3 @@ ostream& operator<<(ostream &os, const TssBeam &beam){
 
     return os;
 }
-
-
-
-
