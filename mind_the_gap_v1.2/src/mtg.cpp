@@ -64,7 +64,7 @@ void print_help(){
     cout << endl << endl <<"This is Mind The Gap Parser, a transition based constituent parser that handles discontinuous constituents." << endl << endl <<
 
         "Usage:" << endl <<
-        "      ./mrg_gcc -t <trainfile> - d <devfile> -x <testfile> -o <outputdirectory> -f <feature templates filename> [options]" << endl << endl <<
+        "      ./mtg2_trainer -t <trainfile> - d <devfile> -x <testfile> -o <outputdirectory> -f <feature templates filename> [options]" << endl << endl <<
 
         "Options:" << endl <<
         "  -h     --help                  displays this message and quits" << endl <<
@@ -308,9 +308,3 @@ int main(int argc, char *argv[]){
 //    Parser newmtg(options.output_dir);
 //    newmtg.export_model(options.output_dir+"_2");
 }
-
-
-
-
-
-

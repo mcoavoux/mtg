@@ -33,11 +33,11 @@ void print_help(){
 
         "Usage:" << endl <<
         "  (1) " << endl <<
-        "      ./mrg_parse_gcc -x <testfile> -o <outputfile> -m <model dir> -b <beam size> -F <format id>" << endl <<
+        "      ./mtg2_parser -x <testfile> -o <outputfile> -m <model dir> -b <beam size> -F <format id>" << endl <<
         "  (2)   " << endl <<
-        "      ./mrg_parse_gcc -m <model dir> -b <beam size> < input > ouput" << endl <<
+        "      ./mtg2_parser -m <model dir> -b <beam size> < input > ouput" << endl <<
         "  (3)   " << endl <<
-        "      ./mrg_parse_gcc -m <model dir> -b <beam size> file1 [file2 [file3 ... ]]" << endl << endl <<
+        "      ./mtg2_parser -m <model dir> -b <beam size> file1 [file2 [file3 ... ]]" << endl << endl <<
 
         "Options:" << endl <<
         "  -h     --help                  displays this message and quits" << endl <<
@@ -55,7 +55,7 @@ void print_help(){
     cout << "(2) format: 1 sentence per line, tokens separated by spaces" << endl <<
             "    outputs only const-trees, only works for models that require only" << endl <<
             "    tokens as input (no tag or morphological attribute)" << endl << endl <<
-            "        echo \"Le chat mange une pomme .\" | ./mtg_parse -m ../pretrained_models/FRENCH -b 1 > output" << endl << endl <<
+            "        echo \"Le chat mange une pomme .\" | ./mtg2_parser -m ../pretrained_models/FRENCH -b 1 > output" << endl << endl <<
             "(3) format: 1 sentence per line, tokens separated by spaces" << endl <<
             "    for each fileN, the parser will output:" << endl <<
             "      fileN.discbracket : constituency trees" << endl <<
