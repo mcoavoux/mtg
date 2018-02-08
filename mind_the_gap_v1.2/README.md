@@ -45,7 +45,7 @@ Input data (for each file):
 
 - 1 sentence per line, tokens separated by spaces.
 - make sure your the input sentences have the same tokenization as in the training corpora (punctuation, etc)
-- parentheses must be replaced by `-RRB-` / `-LRB-`.
+- parentheses must be replaced by `-LRB-` / `-RRB-`.
 
 
 Parse example:
