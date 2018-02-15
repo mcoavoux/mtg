@@ -3,8 +3,17 @@
 
 Multilingual discontinuous constituency parsing.
 
-# Compile
+If you use this version in the context of a publication please cite:
 
+    @phdthesis{coavoux-phd-thesis,
+      author = {Coavoux, Maximin},
+      school = {Univ Paris Diderot, Sorbonne Paris Cit\'{e}},
+      title = {Discontinuous Constituency Parsing of Morphologically Rich Languages},
+      year = 2017
+    }
+
+
+# Compile
 
 Download headers for Eigen and Boost:
 
